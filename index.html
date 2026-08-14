@@ -289,29 +289,26 @@
         const musicToggle = document.getElementById('music-toggle');
         const musicIcon = document.getElementById('music-icon');
 
-        // Precargar el audio
-        audio.load();
-
         startBtn.addEventListener('click', () => {
+            // 1. Ocultar la pantalla de bienvenida
             overlay.classList.add('hidden');
-            
-            // Intento forzado de reproducción al interactuar
-            const playPromise = audio.play();
 
-            if (playPromise !== undefined) {
-                playPromise.then(() => {
+            // 2. Dar un pequeño margen (100ms) para que el navegador procese la acción
+            setTimeout(() => {
+                audio.play().then(() => {
                     musicIcon.className = "fas fa-pause";
                 }).catch(error => {
-                    console.log("Error al reproducir audio:", error);
-                    alert("Asegúrate de tener un archivo llamado 'te-esperaba.mp3' subido junto a tu index.html en GitHub.");
+                    console.log("No se pudo iniciar el audio automático:", error);
                 });
-            }
+            }, 100);
         });
 
+        // Control manual para el botón flotante
         musicToggle.addEventListener('click', () => {
             if (audio.paused) {
-                audio.play();
-                musicIcon.className = "fas fa-pause";
+                audio.play().then(() => {
+                    musicIcon.className = "fas fa-pause";
+                }).catch(e => console.log(e));
             } else {
                 audio.pause();
                 musicIcon.className = "fas fa-music";
