@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nuestra Boda - Germán & María Elena</title>
+    <!-- Fuentes elegantes de Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
+    <!-- Iconos -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --color-principal: #d4af37; /* Dorado tenue */
+            --color-texto: #4a4a4a;
+            --color-fondo: #faf8f5;
+            --color-blanco: #ffffff;
+            --fuente-titulo: 'Cormorant Garamond', serif;
+            --fuente-cuerpo: 'Montserrat', sans-serif;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: var(--fuente-cuerpo);
+            background-color: var(--color-fondo);
+            color: var(--color-texto);
+            line-height: 1.6;
+            text-align: center;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* --- CONTENEDOR DE EMOJIS CAYENDO --- */
+        #falling-emojis-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none; /* Permite hacer clic en la página sin interferencia */
+            z-index: 999;
+            overflow: hidden;
+        }
+
+        .falling-emoji {
+            position: absolute;
+            top: -50px;
+            user-select: none;
+            animation: fall linear infinite;
+        }
+
+        @keyframes fall {
+            0% {
+                transform: translateY(-10px) rotate(0deg);
+                opacity: 0.8;
+            }
+            100% {
+                transform: translateY(105vh) rotate(360deg);
+                opacity: 0.2;
+            }
+        }
+
+        /* --- PANTALLA DE BIENVENIDA (Splash Screen) --- */
+        #welcome-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: var(--color-fondo);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 2000;
+            padding: 20px;
+            transition: opacity 0.8s ease, visibility 0.8s;
+        }
+
+        #welcome-overlay.hidden {
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .welcome-title {
+            font-family: var(--fuente-titulo);
+            font-size: 2.2rem;
+            color: var(--color-principal);
+            margin-bottom: 10px;
+        }
+
+        /* Botón Flotante de Control de Música */
+        .music-control {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: var(--color-principal);
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            z-index: 1000;
+            cursor: pointer;
+            border: none;
+            outline: none;
+        }
+
+        /* Contenedor principal de la invitación */
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: var(--color-blanco);
+            padding: 40px 20px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+            position: relative;
+            z-index: 10;
+        }
+
+        h1, h2, h3 { font-family: var(--fuente-titulo); font-weight: 600; }
+        .header { margin-bottom: 30px; }
+        .ring-icon { font-size: 2.5rem; margin-bottom: 10px; }
+        .sub-title { letter-spacing: 3px; text-transform: uppercase; font-size: 0.9rem; color: #888; margin-bottom: 15px; }
+        .nombres { font-size: 2.5rem; color: var(--color-principal); line-height: 1.2; margin-bottom: 15px; }
+        .heart { color: #d9534f; font-size: 1.5rem; }
+        .bendicion { font-style: italic; font-family: var(--fuente-titulo); font-size: 1.2rem; margin: 20px 0; color: #666; }
+        hr { border: 0; height: 1px; background: linear-gradient(to right, transparent, var(--color-principal), transparent); margin: 30px 0; }
+        .section-title { font-size: 1.5rem; color: var(--color-principal); margin-bottom: 15px; text-transform: uppercase; letter-spacing: 1px; }
+        .familia-item { margin-bottom: 15px; }
+        .familia-item h4 { font-weight: 500; font-size: 0.9rem; text-transform: uppercase; color: #777; }
+        .event-card { background-color: var(--color-fondo); border-radius: 10px; padding: 25px 20px; margin-bottom: 25px; border: 1px solid #f0e6d2; }
+        .event-icon { font-size: 2rem; color: var(--color-principal); margin-bottom: 10px; }
+        .event-date { font-weight: 500; margin: 10px 0; }
+
+        .btn {
+            display: inline-block;
+            background-color: var(--color-principal);
+            color: var(--color-blanco);
+            padding: 12px 25px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 500;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-top: 15px;
+            transition: all 0.3s ease;
+            box-shadow: 0 3px 10px rgba(212, 175, 55, 0.3);
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn:hover { background-color: #b89528; transform: translateY(-2px); }
+        .btn-whatsapp { background-color: #25D366; box-shadow: 0 3px 10px rgba(37, 211, 102, 0.3); }
+        .btn-whatsapp:hover { background-color: #1eb854; }
+        .sobre-box { border: 1px dashed var(--color-principal); padding: 20px; border-radius: 8px; background-color: #fffdf9; }
+        .cita-final { font-family: var(--fuente-titulo); font-style: italic; font-size: 1.3rem; color: #555; margin: 30px 0; }
+
+        @media (max-width: 480px) { .nombres { font-size: 2rem; } }
+    </style>
+</head>
+<body>
+
+    <!-- CONTENEDOR PARA LOS EMOJIS CAYENDO -->
+    <div id="falling-emojis-container"></div>
+
+    <!-- PANTALLA DE BIENVENIDA -->
+    <div id="welcome-overlay">
+        <div class="ring-icon">💍</div>
+        <h1 class="welcome-title">Germán & María Elena</h1>
+        <p style="margin-bottom: 20px; color: #666;">Te invitamos a compartir este día especial</p>
+        <button class="btn" id="start-btn">
+            <i class="fas fa-envelope-open"></i> Abrir Invitación
+        </button>
+    </div>
+
+    <!-- AUDIO EN BUCLE -->
+    <audio id="bg-music" loop preload="auto">
+        <source src="te-esperaba.mp3" type="audio/mpeg">
+    </audio>
+
+    <!-- BOTÓN REPRODUCTOR FLOTANTE -->
+    <button class="music-control" id="music-toggle" title="Pausar/Reproducir música">
+        <i class="fas fa-music" id="music-icon"></i>
+    </button>
+
+    <div class="container">
+        <!-- ENCABEZADO -->
+        <header class="header">
+            <div class="ring-icon">💍</div>
+            <p class="sub-title">¡Nos unimos en matrimonio!</p>
+            <h1 class="nombres">Germán Medel Bello<br><span class="heart">❤️</span><br>María Elena Cervantes Serrano</h1>
+            <p class="bendicion">"Con la bendición de Dios y el cariño de nuestras familias, daremos el sí en este día tan especial."</p>
+        </header>
+
+        <hr>
+
+        <!-- PADRES Y PADRINOS -->
+        <section class="familia-grid">
+            <div class="familia-item">
+                <h4>👨‍👩‍👧 Padres de la Novia</h4>
+                <p>Alejo Cervantes Cervantes y Gloria Serrano Suárez</p>
+            </div>
+            <br>
+            <div class="familia-item">
+                <h4>👨‍👩‍👦 Padres del Novio</h4>
+                <p>Alberto Medel Cervantes ✝ y Sagrario Belén Bello Bautista</p>
+            </div>
+            <br>
+            <div class="familia-item">
+                <h4>🙏 Padrinos de Velación</h4>
+                <p>José Luis Medina Cruz y Mildred Sánchez Popocatl</p>
+            </div>
+        </section>
+
+        <hr>
+
+        <!-- CEREMONIA RELIGIOSA -->
+        <section class="event-card">
+            <div class="event-icon">⛪</div>
+            <h2 class="section-title">Ceremonia Religiosa</h2>
+            <p><strong>Iglesia de Santa Cruz Aquiahuac</strong></p>
+            <p class="event-date">📅 Jueves, 17 de diciembre de 2026 <br> <b>⏰ 1:00 P.M.</b></p>
+            <a href="https://maps.google.com/?q=Iglesia+de+Santa+Cruz+Aquiahuac" target="_blank" class="btn">
+                <i class="fas fa-map-marker-alt"></i> Ver ubicación en Maps
+            </a>
+        </section>
+
+        <!-- RECEPCIÓN -->
+        <section class="event-card">
+            <div class="event-icon">🥂</div>
+            <h2 class="section-title">Recepción</h2>
+            <p>📍 Calle Oaxaca N° 48</p>
+            <a href="https://maps.google.com/?q=Calle+Oaxaca+48" target="_blank" class="btn">
+                <i class="fas fa-map-marker-alt"></i> Ver ubicación en Maps
+            </a>
+        </section>
+
+        <hr>
+
+        <!-- LLUVIA DE SOBRES -->
+        <section class="sobre-box">
+            <h2 class="section-title">💌 Lluvia de Sobres</h2>
+            <p><em>"Su presencia es nuestro mayor regalo, pero si deseas hacernos un obsequio, tu sobre será muy apreciado."</em></p>
+        </section>
+
+        <hr>
+
+        <!-- GALERÍA / COMPARTIR FOTOS -->
+        <section>
+            <h2 class="section-title">📸 Comparte tus fotos</h2>
+            <p>Queremos guardar cada momento. Sube las fotos que tomes durante el evento aquí:</p>
+            <a href="https://photos.app.goo.gl/SWy9UoC4fFovaWGi7" target="_blank" class="btn" style="background-color: #4285F4;">
+                <i class="fas fa-camera"></i> Subir Fotos al Álbum
+            </a>
+        </section>
+
+        <hr>
+
+        <!-- CITA Y CONFIRMACIÓN -->
+        <footer>
+            <p class="cita-final">"Que el Señor bendiga esta unión y llene de luz nuestros caminos."</p>
+            
+            <div style="margin-top: 30px;">
+                <h3 style="margin-bottom: 10px;">Favor de confirmar asistencia</h3>
+                <a href="https://wa.me/522461551853?text=¡Hola!%20Confirmo%20mi%20asistencia%20a%20la%20boda." target="_blank" class="btn btn-whatsapp">
+                    <i class="fab fa-whatsapp"></i> Confirmar vía WhatsApp
+                </a>
+            </div>
+        </footer>
+    </div>
+
+    <!-- SCRIPT DE REPRODUCCIÓN Y EMOJIS CAYENDO -->
+    <script>
+        // --- CONTROL DE AUDIO Y PANTALLA INICIAL ---
+        const audio = document.getElementById('bg-music');
+        const startBtn = document.getElementById('start-btn');
+        const overlay = document.getElementById('welcome-overlay');
+        const musicToggle = document.getElementById('music-toggle');
+        const musicIcon = document.getElementById('music-icon');
+
+        startBtn.addEventListener('click', () => {
+            overlay.classList.add('hidden');
+            audio.play().then(() => {
+                musicIcon.className = "fas fa-pause";
+            }).catch(error => {
+                console.log("No se pudo iniciar el audio:", error);
+            });
+        });
+
+        musicToggle.addEventListener('click', () => {
+            if (audio.paused) {
+                audio.play();
+                musicIcon.className = "fas fa-pause";
+            } else {
+                audio.pause();
+                musicIcon.className = "fas fa-music";
+            }
+        });
+
+        // --- EFECTO DE EMOJIS CAYENDO ---
+        const emojis = ['💍', '🥂', '✨', '🤍', '🌸', '🕊️', '💐'];
+        const container = document.getElementById('falling-emojis-container');
+        const totalEmojis = 25; // Número de emojis flotantes simultáneos
+
+        function createEmoji() {
+            const emojiEl = document.createElement('div');
+            emojiEl.classList.add('falling-emoji');
+            
+            // Selección aleatoria del emoji
+            emojiEl.innerText = emojis[Math.floor(Math.random() * emojis.length)];
+            
+            // Posición horizontal (0vw a 100vw)
+            emojiEl.style.left = Math.random() * 100 + 'vw';
+            
+            // Tamaños variables (16px a 32px)
+            const fontSize = Math.random() * 16 + 16;
+            emojiEl.style.fontSize = fontSize + 'px';
+            
+            // Duración aleatoria de caída (entre 5 y 11 segundos)
+            const duration = Math.random() * 6 + 5;
+            emojiEl.style.animationDuration = duration + 's';
+            
+            // Retraso aleatorio para fluidez
+            emojiEl.style.animationDelay = Math.random() * 5 + 's';
+            
+            container.appendChild(emojiEl);
+        }
+
+        // Crear los elementos al cargar la página
+        for (let i = 0; i < totalEmojis; i++) {
+            createEmoji();
+        }
+    </script>
+</body>
+</html>
