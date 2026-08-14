@@ -280,7 +280,7 @@
         </footer>
     </div>
 
-    <!-- SCRIPT DE REPRODUCCIÓN Y EMOJIS CAYENDO -->
+<!-- SCRIPT DE REPRODUCCIÓN Y EMOJIS CAYENDO -->
     <script>
         // --- CONTROL DE AUDIO Y PANTALLA INICIAL ---
         const audio = document.getElementById('bg-music');
@@ -289,13 +289,23 @@
         const musicToggle = document.getElementById('music-toggle');
         const musicIcon = document.getElementById('music-icon');
 
+        // Precargar el audio
+        audio.load();
+
         startBtn.addEventListener('click', () => {
             overlay.classList.add('hidden');
-            audio.play().then(() => {
-                musicIcon.className = "fas fa-pause";
-            }).catch(error => {
-                console.log("No se pudo iniciar el audio:", error);
-            });
+            
+            // Intento forzado de reproducción al interactuar
+            const playPromise = audio.play();
+
+            if (playPromise !== undefined) {
+                playPromise.then(() => {
+                    musicIcon.className = "fas fa-pause";
+                }).catch(error => {
+                    console.log("Error al reproducir audio:", error);
+                    alert("Asegúrate de tener un archivo llamado 'te-esperaba.mp3' subido junto a tu index.html en GitHub.");
+                });
+            }
         });
 
         musicToggle.addEventListener('click', () => {
@@ -311,33 +321,21 @@
         // --- EFECTO DE EMOJIS CAYENDO ---
         const emojis = ['💍', '🥂', '✨', '🤍', '🌸', '🕊️', '💐'];
         const container = document.getElementById('falling-emojis-container');
-        const totalEmojis = 25; // Número de emojis flotantes simultáneos
+        const totalEmojis = 25;
 
         function createEmoji() {
             const emojiEl = document.createElement('div');
             emojiEl.classList.add('falling-emoji');
-            
-            // Selección aleatoria del emoji
             emojiEl.innerText = emojis[Math.floor(Math.random() * emojis.length)];
-            
-            // Posición horizontal (0vw a 100vw)
             emojiEl.style.left = Math.random() * 100 + 'vw';
-            
-            // Tamaños variables (16px a 32px)
             const fontSize = Math.random() * 16 + 16;
             emojiEl.style.fontSize = fontSize + 'px';
-            
-            // Duración aleatoria de caída (entre 5 y 11 segundos)
             const duration = Math.random() * 6 + 5;
             emojiEl.style.animationDuration = duration + 's';
-            
-            // Retraso aleatorio para fluidez
             emojiEl.style.animationDelay = Math.random() * 5 + 's';
-            
             container.appendChild(emojiEl);
         }
 
-        // Crear los elementos al cargar la página
         for (let i = 0; i < totalEmojis; i++) {
             createEmoji();
         }
