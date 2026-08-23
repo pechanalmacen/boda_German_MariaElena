@@ -1,15 +1,15 @@
-}<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Nuestra Boda - Germán & María Elena</title>
-    <!-- Fuente Montserrat de Google Fonts -->
+    <!-- Fuentes elegantes de Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
     <!-- Iconos -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.3.1/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     
     <style>
         :root {
@@ -17,18 +17,18 @@
             --color-texto: #4a4a4a;
             --color-fondo: #faf8f5;
             --color-blanco: #ffffff;
-            --fuente-unica: 'Montserrat', sans-serif;
+            --fuente-titulo: 'Montserrat', sans-serif;
+            --fuente-cuerpo: 'Montserrat', sans-serif;
         }
 
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
-            font-family: var(--fuente-unica) !important;
         }
 
         body {
-            font-family: var(--fuente-unica);
+            font-family: var(--fuente-cuerpo);
             background-color: var(--color-fondo);
             color: var(--color-texto);
             line-height: 1.6;
@@ -44,7 +44,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            pointer-events: none;
+            pointer-events: none; /* Permite hacer clic en la página sin interferencia */
             z-index: 999;
             overflow: hidden;
         }
@@ -59,7 +59,7 @@
         @keyframes fall {
             0% {
                 transform: translateY(-10px) rotate(0deg);
-                opacity: 0.9;
+                opacity: 0.8;
             }
             100% {
                 transform: translateY(105vh) rotate(360deg);
@@ -90,11 +90,10 @@
         }
 
         .welcome-title {
-            font-size: 2rem;
-            font-weight: 600;
+            font-family: var(--fuente-titulo);
+            font-size: 2.2rem;
             color: var(--color-principal);
             margin-bottom: 10px;
-            letter-spacing: 1px;
         }
 
         /* Botón Flotante de Control de Música */
@@ -117,7 +116,7 @@
             outline: none;
         }
 
-        /* Contenedor principal de la tarjeta */
+        /* Contenedor principal de la invitación */
         .container {
             max-width: 600px;
             margin: 0 auto;
@@ -128,51 +127,20 @@
             z-index: 10;
         }
 
-        h1, h2, h3 { 
-            font-weight: 600; 
-        }
-        
+        h1, h2, h3 { font-family: var(--fuente-titulo); font-weight: 600; }
         .header { margin-bottom: 30px; }
         .ring-icon { font-size: 2.5rem; margin-bottom: 10px; }
-        .sub-title { letter-spacing: 3px; text-transform: uppercase; font-size: 0.85rem; color: #888; margin-bottom: 15px; font-weight: 500; }
-        
-        .nombres { 
-            font-size: 2.2rem; 
-            color: var(--color-principal); 
-            line-height: 1.3; 
-            margin-bottom: 15px; 
-            font-weight: 600;
-            letter-spacing: 0.5px;
-        }
-        
+        .sub-title { letter-spacing: 3px; text-transform: uppercase; font-size: 0.9rem; color: #888; margin-bottom: 15px; }
+        .nombres { font-size: 2.5rem; color: var(--color-principal); line-height: 1.2; margin-bottom: 15px; }
         .heart { color: #d9534f; font-size: 1.5rem; }
-        
-        .bendicion { 
-            font-style: italic; 
-            font-size: 1.05rem; 
-            margin: 20px 0; 
-            color: #666; 
-            font-weight: 400;
-        }
-        
+        .bendicion { font-style: italic; font-family: var(--fuente-titulo); font-size: 1.2rem; margin: 20px 0; color: #666; }
         hr { border: 0; height: 1px; background: linear-gradient(to right, transparent, var(--color-principal), transparent); margin: 30px 0; }
-        
-        .section-title { 
-            font-size: 1.3rem; 
-            color: var(--color-principal); 
-            margin-bottom: 15px; 
-            text-transform: uppercase; 
-            letter-spacing: 1.5px; 
-            font-weight: 600;
-        }
-        
+        .section-title { font-size: 1.5rem; color: var(--color-principal); margin-bottom: 15px; text-transform: uppercase; letter-spacing: 1px; }
         .familia-item { margin-bottom: 15px; }
-        .familia-item h4 { font-weight: 600; font-size: 0.85rem; text-transform: uppercase; color: #777; letter-spacing: 1px; }
-        .familia-item p { font-size: 0.95rem; }
-
+        .familia-item h4 { font-weight: 500; font-size: 0.9rem; text-transform: uppercase; color: #777; }
         .event-card { background-color: var(--color-fondo); border-radius: 10px; padding: 25px 20px; margin-bottom: 25px; border: 1px solid #f0e6d2; }
         .event-icon { font-size: 2rem; color: var(--color-principal); margin-bottom: 10px; }
-        .event-date { font-weight: 500; margin: 10px 0; font-size: 0.95rem; }
+        .event-date { font-weight: 500; margin: 10px 0; }
 
         .btn {
             display: inline-block;
@@ -196,16 +164,9 @@
         .btn-whatsapp { background-color: #25D366; box-shadow: 0 3px 10px rgba(37, 211, 102, 0.3); }
         .btn-whatsapp:hover { background-color: #1eb854; }
         .sobre-box { border: 1px dashed var(--color-principal); padding: 20px; border-radius: 8px; background-color: #fffdf9; }
-        
-        .cita-final { 
-            font-style: italic; 
-            font-size: 1.1rem; 
-            color: #555; 
-            margin: 30px 0; 
-            font-weight: 400;
-        }
+        .cita-final { font-family: var(--fuente-titulo); font-style: italic; font-size: 1.3rem; color: #555; margin: 30px 0; }
 
-        @media (max-width: 480px) { .nombres { font-size: 1.8rem; } }
+        @media (max-width: 480px) { .nombres { font-size: 2rem; } }
     </style>
 </head>
 <body>
@@ -217,7 +178,7 @@
     <div id="welcome-overlay">
         <div class="ring-icon">💍</div>
         <h1 class="welcome-title">Germán & María Elena</h1>
-        <p style="margin-bottom: 20px; color: #666; font-size: 0.95rem;">Te invitamos a compartir este día especial</p>
+        <p style="margin-bottom: 20px; color: #666;">Te invitamos a compartir este día especial</p>
         <button class="btn" id="start-btn">
             <i class="fas fa-envelope-open"></i> Abrir Invitación
         </button>
@@ -269,7 +230,7 @@
             <div class="event-icon">⛪</div>
             <h2 class="section-title">Ceremonia Religiosa</h2>
             <p><strong>Iglesia de Santa Cruz Aquiahuac</strong></p>
-            <p class="event-date">📅 Jueves, 17 de diciembre de 2026 — ⏰ 1:00 P.M.</p>
+            <p class="event-date">📅 Jueves, 17 de diciembre de 2026 <br> <b>⏰ 1:00 P.M.</b></p>
             <a href="https://maps.google.com/?q=Iglesia+de+Santa+Cruz+Aquiahuac" target="_blank" class="btn">
                 <i class="fas fa-map-marker-alt"></i> Ver ubicación en Maps
             </a>
@@ -298,7 +259,7 @@
         <!-- GALERÍA / COMPARTIR FOTOS -->
         <section>
             <h2 class="section-title">📸 Comparte tus fotos</h2>
-            <p style="font-size: 0.95rem;">Queremos guardar cada momento. Sube las fotos que tomes durante el evento aquí:</p>
+            <p>Queremos guardar cada momento. Sube las fotos que tomes durante el evento aquí:</p>
             <a href="https://photos.app.goo.gl/SWy9UoC4fFovaWGi7" target="_blank" class="btn" style="background-color: #4285F4;">
                 <i class="fas fa-camera"></i> Subir Fotos al Álbum
             </a>
@@ -311,7 +272,7 @@
             <p class="cita-final">"Que el Señor bendiga esta unión y llene de luz nuestros caminos."</p>
             
             <div style="margin-top: 30px;">
-                <h3 style="margin-bottom: 10px; font-size: 1.1rem;">Favor de confirmar asistencia</h3>
+                <h3 style="margin-bottom: 10px;">Favor de confirmar asistencia</h3>
                 <a href="https://wa.me/522461551853?text=¡Hola!%20Confirmo%20mi%20asistencia%20a%20la%20boda." target="_blank" class="btn btn-whatsapp">
                     <i class="fab fa-whatsapp"></i> Confirmar vía WhatsApp
                 </a>
@@ -319,7 +280,7 @@
         </footer>
     </div>
 
-    <!-- SCRIPT DE REPRODUCCIÓN Y EMOJIS CAYENDO -->
+<!-- SCRIPT DE REPRODUCCIÓN Y EMOJIS CAYENDO -->
     <script>
         // --- CONTROL DE AUDIO Y PANTALLA INICIAL ---
         const audio = document.getElementById('bg-music');
@@ -328,26 +289,29 @@
         const musicToggle = document.getElementById('music-toggle');
         const musicIcon = document.getElementById('music-icon');
 
-        startBtn.addEventListener('click', () => {
-            // 1. Ocultar la pantalla de bienvenida
-            overlay.classList.add('hidden');
+        // Precargar el audio
+        audio.load();
 
-            // 2. Dar un pequeño margen (100ms) para que el navegador procese la acción
-            setTimeout(() => {
-                audio.play().then(() => {
+        startBtn.addEventListener('click', () => {
+            overlay.classList.add('hidden');
+            
+            // Intento forzado de reproducción al interactuar
+            const playPromise = audio.play();
+
+            if (playPromise !== undefined) {
+                playPromise.then(() => {
                     musicIcon.className = "fas fa-pause";
                 }).catch(error => {
-                    console.log("No se pudo iniciar el audio automático:", error);
+                    console.log("Error al reproducir audio:", error);
+                    alert("Asegúrate de tener un archivo llamado 'te-esperaba.mp3' subido junto a tu index.html en GitHub.");
                 });
-            }, 100);
+            }
         });
 
-        // Control manual para el botón flotante
         musicToggle.addEventListener('click', () => {
             if (audio.paused) {
-                audio.play().then(() => {
-                    musicIcon.className = "fas fa-pause";
-                }).catch(e => console.log(e));
+                audio.play();
+                musicIcon.className = "fas fa-pause";
             } else {
                 audio.pause();
                 musicIcon.className = "fas fa-music";
