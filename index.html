@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+}<!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
@@ -8,8 +8,8 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,600&display=swap" rel="stylesheet">
-<!-- Iconos Font Awesome 6 (Actualizado) -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn1TE82KOxbRF38w/HA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- Iconos -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     
     <style>
         :root {
@@ -219,7 +219,7 @@
         <h1 class="welcome-title">Germán & María Elena</h1>
         <p style="margin-bottom: 20px; color: #666; font-size: 0.95rem;">Te invitamos a compartir este día especial</p>
         <button class="btn" id="start-btn">
-            <i class="fa-solid fa-envelope-open"></i> Abrir Invitación
+            <i class="fas fa-envelope-open"></i> Abrir Invitación
         </button>
     </div>
 
@@ -230,7 +230,7 @@
 
     <!-- BOTÓN REPRODUCTOR FLOTANTE -->
     <button class="music-control" id="music-toggle" title="Pausar/Reproducir música">
-        <i class="fa-solid fa-music" id="music-icon"></i>
+        <i class="fas fa-music" id="music-icon"></i>
     </button>
 
     <div class="container">
@@ -271,7 +271,7 @@
             <p><strong>Iglesia de Santa Cruz Aquiahuac</strong></p>
             <p class="event-date">📅 Jueves, 17 de diciembre de 2026 — ⏰ 1:00 P.M.</p>
             <a href="https://maps.google.com/?q=Iglesia+de+Santa+Cruz+Aquiahuac" target="_blank" class="btn">
-                <i class="fa-solid fa-map-marker-alt"></i> Ver ubicación en Maps
+                <i class="fas fa-map-marker-alt"></i> Ver ubicación en Maps
             </a>
         </section>
 
@@ -281,7 +281,7 @@
             <h2 class="section-title">Recepción</h2>
             <p>📍 Calle Oaxaca N° 48</p>
             <a href="https://maps.google.com/?q=Calle+Oaxaca+48" target="_blank" class="btn">
-                <i class="fa-solid fa-map-marker-alt"></i> Ver ubicación en Maps
+                <i class="fas fa-map-marker-alt"></i> Ver ubicación en Maps
             </a>
         </section>
 
@@ -300,7 +300,7 @@
             <h2 class="section-title">📸 Comparte tus fotos</h2>
             <p style="font-size: 0.95rem;">Queremos guardar cada momento. Sube las fotos que tomes durante el evento aquí:</p>
             <a href="https://photos.app.goo.gl/SWy9UoC4fFovaWGi7" target="_blank" class="btn" style="background-color: #4285F4;">
-                <i class="fa-solid fa-camera"></i> Subir Fotos al Álbum
+                <i class="fas fa-camera"></i> Subir Fotos al Álbum
             </a>
         </section>
 
@@ -335,7 +335,7 @@
             // 2. Dar un pequeño margen (100ms) para que el navegador procese la acción
             setTimeout(() => {
                 audio.play().then(() => {
-                    musicIcon.className = "fa-solid fa-pause";
+                    musicIcon.className = "fas fa-pause";
                 }).catch(error => {
                     console.log("No se pudo iniciar el audio automático:", error);
                 });
@@ -346,11 +346,11 @@
         musicToggle.addEventListener('click', () => {
             if (audio.paused) {
                 audio.play().then(() => {
-                    musicIcon.className = "fa-solid fa-pause";
+                    musicIcon.className = "fas fa-pause";
                 }).catch(e => console.log(e));
             } else {
                 audio.pause();
-                musicIcon.className = "fa-soli fa-music";
+                musicIcon.className = "fas fa-music";
             }
         });
 
